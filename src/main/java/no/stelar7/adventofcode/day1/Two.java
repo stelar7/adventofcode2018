@@ -1,32 +1,23 @@
 package no.stelar7.adventofcode.day1;
 
-import no.stelar7.adventofcode.Utils;
+import no.stelar7.adventofcode.utils.IntFromFileSupplier;
 
 import java.util.*;
+import java.util.function.*;
 
 public class Two
 {
     public static void main(String[] args)
     {
-        String       input = Utils.readFile("day1.input");
-        String[]     lines = input.split("\n");
-        Set<Integer> set   = new HashSet<>();
-        int          freq  = 0;
-        set.add(freq);
+        Supplier<Integer> data  = new IntFromFileSupplier("day1.input", true);
+        Set<Integer>      known = new HashSet<>(Collections.singletonList(0));
+        int               freq  = 0;
         
-        outer:
-        while (true)
+        do
         {
-            for (String line : lines)
-            {
-                int val = Integer.parseInt(line);
-                freq += val;
-                if (!set.add(freq))
-                {
-                    System.out.println(freq);
-                    break outer;
-                }
-            }
-        }
+            freq += data.get();
+        } while (known.add(freq));
+        
+        System.out.println(freq);
     }
 }

@@ -1,7 +1,7 @@
 package no.stelar7.adventofcode;
 
 import java.io.InputStream;
-import java.util.Scanner;
+import java.util.*;
 
 public class Utils
 {
