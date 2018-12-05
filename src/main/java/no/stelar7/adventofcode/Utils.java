@@ -94,6 +94,18 @@ public class Utils
     }
     
     
+    public static char[] removeIndex(char[] source, int index)
+    {
+        char[] result = new char[source.length - 1];
+        System.arraycopy(source, 0, result, 0, index);
+        if (source.length != index)
+        {
+            System.arraycopy(source, index + 1, result, index, source.length - index - 1);
+        }
+        return result;
+    }
+    
+    
     public static int[] letterCount(String a)
     {
         int[] letterCount = new int[26];

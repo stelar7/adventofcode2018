@@ -30,6 +30,11 @@ public class StringFromFileSupplier implements Supplier<String>, SourceSupplier<
         return data;
     }
     
+    public String asString()
+    {
+        return data.get(0);
+    }
+    
     @Override
     public String get()
     {
