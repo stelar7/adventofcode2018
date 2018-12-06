@@ -1,5 +1,7 @@
 package no.stelar7.adventofcode;
 
+import no.stelar7.adventofcode.day6.Point;
+
 import java.io.*;
 import java.lang.reflect.*;
 import java.time.LocalDateTime;
@@ -69,6 +71,8 @@ public class Utils
     public static <T> Map<String, String> extractRegex(String input, String regex, Class clazz)
     {
         String[] params = Arrays.stream(clazz.getDeclaredFields())
+                                .filter(a -> !Modifier.isStatic(a.getModifiers()))
+                                .filter(a -> !Modifier.isFinal(a.getModifiers()))
                                 .map(Field::getName)
                                 .toArray(String[]::new);
         
@@ -111,5 +115,10 @@ public class Utils
         int[] letterCount = new int[26];
         a.chars().forEach(c -> letterCount[c - 97]++);
         return letterCount;
+    }
+    
+    public static int manhattanDistance(Point one, Point two)
+    {
+        return Math.abs(two.getX() - one.getX()) + Math.abs(two.getY() - one.getY());
     }
 }
