@@ -20,6 +20,19 @@ public class IntFromFileSupplier implements Supplier<Integer>, SourceSupplier<In
                           .collect(Collectors.toList());
     }
     
+    public IntFromFileSupplier(String inputFile, String separator, boolean infinite)
+    {
+        this.infinite = infinite;
+        this.data = Arrays.stream(Utils.readFile(inputFile).split(separator))
+                          .map(Integer::parseInt)
+                          .collect(Collectors.toList());
+    }
+    
+    public static IntFromFileSupplier create(String inputFile, String separator, boolean infinite)
+    {
+        return new IntFromFileSupplier(inputFile, separator, infinite);
+    }
+    
     public static IntFromFileSupplier create(String inputFile, boolean infinite)
     {
         return new IntFromFileSupplier(inputFile, infinite);

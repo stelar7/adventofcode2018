@@ -19,6 +19,18 @@ public class StringFromFileSupplier implements Supplier<String>, SourceSupplier<
                           .collect(Collectors.toList());
     }
     
+    public StringFromFileSupplier(String inputFile, String separator, boolean infinite)
+    {
+        this.infinite = infinite;
+        this.data = Arrays.stream(Utils.readFile(inputFile).split(separator))
+                          .collect(Collectors.toList());
+    }
+    
+    public static StringFromFileSupplier create(String inputFile, String separator, boolean infinite)
+    {
+        return new StringFromFileSupplier(inputFile, separator, infinite);
+    }
+    
     public static StringFromFileSupplier create(String inputFile, boolean infinite)
     {
         return new StringFromFileSupplier(inputFile, infinite);
