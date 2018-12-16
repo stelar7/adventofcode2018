@@ -39,6 +39,33 @@ public class Pair<A, B>
                Objects.equals(b, pair.b);
     }
     
+    public int compareTo(Pair<Integer, Integer> other)
+    {
+        if (a instanceof Integer && b instanceof Integer)
+        {
+            if ((Integer) a > other.a)
+            {
+                return (Integer) a;
+            }
+            if (other.a > (Integer) a)
+            {
+                return other.a;
+            }
+            if (a.equals(other.a))
+            {
+                if ((Integer) b > other.b)
+                {
+                    return (Integer) b;
+                }
+                if (other.b > (Integer) b)
+                {
+                    return other.b;
+                }
+            }
+        }
+        return 0;
+    }
+    
     @Override
     public int hashCode()
     {
